@@ -10,6 +10,7 @@ router.get('/', function(req, res) {
 	debug('Listing players');
 	db.bind('players');
 	db.players.find().toArray(function(err, items) {
+		/*
 		//debug('Count');
 		debug(items);
 		
@@ -19,9 +20,11 @@ router.get('/', function(req, res) {
 			debug(items[i]);
 			players[i] = items[i];
 		};
+		*/
+		debug('Count:' + items.length);
+    res.render('index', { title: 'Express', players: items });
     db.close();
-    debug('Count:' + players.length);
-    res.render('index', { title: 'Express', players: players });
+    
 	});
   
   

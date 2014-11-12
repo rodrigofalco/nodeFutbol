@@ -11,17 +11,12 @@ router.get('/', function(req, res) {
   res.send('Listing players');
   db.players.find().toArray(function(err, items) {
   	/*
-		var players = [];
-		for (var i = 0; i < items.length; i++) {
-			debug(items[i]);
-			players[i] = items[i];
-		};
-	    db.close();
-	    debug('Count:' + players.length);
-	    res.render('index', { title: 'Express', players: players });
-	    */
-	    res.render('index', { title: 'Express', players: items });
-	    db.close();
+  	res.render('index', { title: 'Express', players: items });
+    */
+
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(items));
+    db.close();
 	});
 });
 
